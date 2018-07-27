@@ -5,8 +5,9 @@ import os
 from flask import Flask, jsonify, render_template
 from flask import abort
 from flask import make_response
-from flask import request
+from flask import request, Response
 import logging
+import glob
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 application = Flask(__name__)
@@ -31,6 +32,26 @@ def html_render(project_id,commit_message,author,project_name,commit_hash):
         writer.write(render_template('template.html', project_id=project_id, committ_message=commit_message,committer=author,project_name=project_name,committ_hash=commit_hash))
         writer.close()
         return render_template('template.html', project_id=project_id, committ_message=commit_message,committer=author,project_name=project_name,committ_hash=commit_hash)
+def root_dir():  # pragma: no cover
+    return os.path.abspath(os.path.dirname(__file__))
+def get_latest_releasenotes():  # pragma: no cover
+    try:
+        # list all the files in the directory
+        directory = '/home/ubuntu/webhook_handler/data/'
+        files = os.listdir('/home/ubuntu/webhook_handler/data/')
+        # remove all file names that don't match partial_file_name string
+        #files = filter(lambda x: x.find(partial_file_name) > -1, files)
+        # create a dict that contains list of files and their modification timestamps
+        name_n_timestamp = dict([(x, os.stat(directory+x).st_mtime) for x in files])
+        # return the file with the latest timestamp
+        newest= max(name_n_timestamp, key=lambda k: name_n_timestamp.get(k))
+        return open('/home/ubuntu/webhook_handler/data/'+newest,'r').read()
+    except IOError as exc:
+        return str(exc)
+@application.route('/commits/api/v1.0/releasenotes/latest/', methods=['GET'])
+def metrics():  # pragma: no cover
+    content = get_latest_releasenotes()
+    return Response(content, mimetype="text/html")
 
 @application.route('/todo/api/v1.0/releasenotes', methods=['POST'])
 def get_tasks():
