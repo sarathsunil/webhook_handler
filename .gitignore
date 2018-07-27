@@ -1,0 +1,6 @@
+#ignore precompiled python files
+*.pyc
+#ignore data folder
+/data/*
+/webhook_handler_env/*
+/hookhandler/*
