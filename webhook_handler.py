@@ -47,6 +47,7 @@ def get_latest_releasenotes():  # pragma: no cover
         newest= max(name_n_timestamp, key=lambda k: name_n_timestamp.get(k))
         return open('/home/ubuntu/webhook_handler/data/'+newest,'r').read()
     except IOError as exc:
+        #logger.error("Redirection error")
         return str(exc)
 @application.route('/commits/api/v1.0/releasenotes/latest/', methods=['GET'])
 def metrics():  # pragma: no cover
@@ -70,36 +71,11 @@ def get_tasks():
     else:
         return jsonify({'project_id': 'Not Found'})
 
-@application.route('/todo/api/v1.0/taskdetails', methods=['POST'])
-def get_tas():
-    writer = open('cache-writer.txt','w')
-    writer.write(tasks)
-    return jsonify({'tasks': tasks})
-
-
-@application.route('/todo/api/v1.0/tasks/<int:task_id>', methods=['GET'])
-def get_task(task_id):
-    task = [task for task in tasks if task['id'] == int(task_id)]
-    if len(task) == 0:
-        abort(404)
-    return jsonify({'task': task[0]})
-
-
-@application.route('/todo/api/v1.0/tasks', methods=['POST'])
-def create_task():
-    print request.json
-    if not request.json or not 'title' in request.json:
-        abort(400)
-    task = {
-        'id': tasks[-1]['id'] + 1,
-        'title': request.json['title'],
-        'description': request.json.get('description', ""),
-        'done': False
-    }
-    tasks.append(task)
-    return jsonify({'task': task}), 201
 @application.errorhandler(404)
 def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
+
 if __name__ == '__main__':
-    application.run(debug=True)
+    application.jinja_env.auto_reload = True
+    application.config['TEMPLATES_AUTO_RELOAD'] = True
+    application.run(debug=True,extra_files = ['/home/ubuntu/webhook_handler/data/releasenotes*'])
