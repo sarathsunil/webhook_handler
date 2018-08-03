@@ -286,15 +286,12 @@ a {
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
   background-color: #FFF;
 }
-<<<<<<< HEAD
 v {
     background-color: #333;
     overflow: hidden;
 }
 
 /* Style the links inside the navigation bar */
-=======
->>>>>>> cccc5414b2dc0fe2add1798796f89b35e4d5cc86
 .topnav {
     background-color: #333;
     overflow: hidden;
@@ -358,7 +355,7 @@ v {
   left: 0;
   z-index: 0;
 }
-.section .absolute-wrapper .container, 
+.section .absolute-wrapper .container,
 .section .absolute-wrapper .container-fluid,
 .section .absolute-wrapper .row,
 .section .absolute-wrapper .col-md-5 {
@@ -399,7 +396,7 @@ p.section-description {
 }
 .hero.big {
   padding-top: 300px;
-  padding-bottom: 300px;  
+  padding-bottom: 300px;
 }
 .hero h2 {
   font-size: 24px;
@@ -517,17 +514,10 @@ p.section-description {
 </style>
   </head>
   <body>
-<<<<<<< HEAD
     <div class="topnav">
     <a class="active" href="#home">Release Notes Home</a>
     <a href="#news">Report an Error</a>
     </div>
-=======
-  <div class="topnav">
-  <a class="active" href="#home">Release Notes Home</a>
-  <a href="#news">Report An Error</a>
-  </div>
->>>>>>> cccc5414b2dc0fe2add1798796f89b35e4d5cc86
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -536,7 +526,7 @@ p.section-description {
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="http://incubator.apache.org/blur">{{project_name}} - Release Notes</a>
+          <a class="navbar-brand" href="http://incubator.apache.org/blur">{{project_name}} - Release Notes for {{release_tag}}</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -552,12 +542,11 @@ p.section-description {
     </div>
     <div class="container">
       <div class="jumbotron">
-        <h2>Release Notes for committ </h2>
-        <p>Commit SHA : {{committ_hash}}</p>
-        <p>Committer : {{committer}}</p>
-        <p>Committ Message : {{committ_message}}</p>
-        <p>JIRA ISSUE ID: CSIDO-901</p>
-        <p>JIRA ISSUE TITLE: {{committ_message}}</p>
+        <h2>Release Notes for {{release_tag}} </h2>
+        <p><h3>Issues List</h3></p>
+        <p>{{customer_description}}</p>
+        <p><h3>Release Tag</p>
+        <p>{{release_tag}}</p>
 
 </div>
 </div>
@@ -569,5 +558,3 @@ p.section-description {
 <script src="resources/js/respond.min.js"></script>
 </body>
 </html>
-
-
