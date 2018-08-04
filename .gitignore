@@ -4,4 +4,5 @@
 /data/*
 /webhook_handler_env/*
 /hookhandler/*
-/templates/jira_*
+curl_out
+.gitignore

@@ -90,7 +90,7 @@ def jira_query_update(username,password,field_id,ip,port,issue_id):
     curl_string = curl_string.replace('my_jira_ip',ip)
     curl_string = curl_string.replace('my_jira_port',str(port))
     curl_string = curl_string.replace('my_issue_id',issue_id)
-    os.system('sudo '+curl_string+' >/home/curl_out')
+    os.system('sudo '+curl_string+' >curl_out')
     try:
        return open('/home/curl_out','r').read().split('\n')[0].split()[1]
     except IndexError:
