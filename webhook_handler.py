@@ -12,9 +12,9 @@ import requests
 from settings.credentials import JIRA_USERNAME as JIRA_USERNAME,JIRA_PASSWORD as JIRA_PASSWORD
 from settings.urls_all import JIRA as JIRA_IP
 from settings.ports_all import JIRA as JIRA_PORT
-from settings.jira_fields import customer_description as customer_description
-from settings.jira_fields import release_tag as release_tag
-from settings.jira_fields import code_integration as code_integration
+from settings.jira_fields import customer_description as CUSTOMER_DESCRIPTION
+from settings.jira_fields import release_tag as RELEASE_TAG
+from settings.jira_fields import code_integration as CODE_INTEGRATION
 from functions.authorization import get_session_cookie
 from functions.html_renderer import html_parse
 from functions.jira_query import jira_query_pull,jira_validate,jira_query_update,jira_field_id_mapping,jira_release_tag_look_up
@@ -48,6 +48,12 @@ def get_latest_releasenotes():  # pragma: no cover
     except IOError as exc:
         #logger.error("Redirection error")
         return str(exc)
+@application.route('/')
+def home():
+    return render_template('home.html')
+@application.route('/regenerate')
+def regenerate():
+    return render_template('generate.html')
 @application.route('/commits/api/v1.0/releasenotes/latest/', methods=['GET'])
 def metrics():  # pragma: no cover
     content = get_latest_releasenotes()
@@ -86,11 +92,11 @@ def get_tasks():
             if wi_status == 'Done' or wi_status == 'done':
                return jsonify({'errorMessages':["Work item is already in done state, please revise work item Id in the commit message"]})
             response = requests.get(JIRA_ISSUES_URL, headers=HEADERS, verify=False).json()
-            customer_description_id = jira_field_id_mapping("Customer Description",ISSUE_ID,JIRA_IP,JIRA_PORT,jsessionid)
+            customer_description_id = jira_field_id_mapping(CUSTOMER_DESCRIPTION,ISSUE_ID,JIRA_IP,JIRA_PORT,jsessionid)
             logger.info("CUSTOMER DESC ID : "+str(customer_description_id))
-            release_tag_id = jira_field_id_mapping("Release Tag",ISSUE_ID,JIRA_IP,JIRA_PORT,jsessionid)
+            release_tag_id = jira_field_id_mapping(RELEASE_TAG,ISSUE_ID,JIRA_IP,JIRA_PORT,jsessionid)
             logger.info("RELEASE TAG ID : "+str(release_tag_id))
-            code_integration_id = jira_field_id_mapping("Code Integration",ISSUE_ID,JIRA_IP,JIRA_PORT,jsessionid)
+            code_integration_id = jira_field_id_mapping(CODE_INTEGRATION,ISSUE_ID,JIRA_IP,JIRA_PORT,jsessionid)
             if(jira_query_update(JIRA_USERNAME,JIRA_PASSWORD,code_integration_id,JIRA_IP,JIRA_PORT,ISSUE_ID)!='204'):
                 logger.info("COULD NOT UPDATE WORK ITEM CODE INTEGRATION ID--CODE RECEIVED : "+str(jira_query_update(JIRA_USERNAME,JIRA_PASSWORD,code_integration_id,JIRA_IP,JIRA_PORT,ISSUE_ID)))
             logger.info("CODE INT ID : "+str(code_integration_id))

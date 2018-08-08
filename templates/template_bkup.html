@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>django-shop Documentation</title>
+    <title>{{project_name}} Documentation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap -->
@@ -286,7 +286,36 @@ a {
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
   background-color: #FFF;
 }
+v {
+    background-color: #333;
+    overflow: hidden;
+}
 
+/* Style the links inside the navigation bar */
+.topnav {
+    background-color: #333;
+    overflow: hidden;
+}
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+    background-color: #4CAF50;
+    color: white;
+}
 /*  DROPDOWN
 */
 .dropdown-menu {
@@ -326,7 +355,7 @@ a {
   left: 0;
   z-index: 0;
 }
-.section .absolute-wrapper .container, 
+.section .absolute-wrapper .container,
 .section .absolute-wrapper .container-fluid,
 .section .absolute-wrapper .row,
 .section .absolute-wrapper .col-md-5 {
@@ -367,7 +396,7 @@ p.section-description {
 }
 .hero.big {
   padding-top: 300px;
-  padding-bottom: 300px;  
+  padding-bottom: 300px;
 }
 .hero h2 {
   font-size: 24px;
@@ -485,6 +514,10 @@ p.section-description {
 </style>
   </head>
   <body>
+    <div class="topnav">
+    <a class="active" href="#home">Release Notes Home</a>
+    <a href="#news">Report an Error</a>
+    </div>
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -493,28 +526,27 @@ p.section-description {
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="http://incubator.apache.org/blur">django-shop - Release Notes</a>
+          <a class="navbar-brand" href="http://incubator.apache.org/blur">{{project_name}} - Release Notes for {{release_tag}}</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
           <li><a href="index.html">Main</a></li>
-            <li><a href="using-blur.html">Using django-shop</a></li>
-            <li><a href="Blur.html">django-shop API</a></li>
+            <li><a href="using-blur.html">Using {{project_name}}</a></li>
+            <li><a href="Blur.html">{{project_name}} API</a></li>
             <li><a href="console.html">Console</a></li>
       <li><a href="site/index.html" target="_blank">MANA Wiki</a></li>
-      <li><a href="site/apidocs/index.html" target="_blank">django-shop documentation</a></li>
+      <li><a href="site/apidocs/index.html" target="_blank">{{project_name}} documentation</a></li>
           </ul>
         </div>
       </div>
     </div>
     <div class="container">
       <div class="jumbotron">
-        <h2>Release Notes for committ </h2>
-        <p>Commit SHA : f4f4db7b371ca86b05f9dcbd4e5061c2509171ac</p>
-        <p>Committer : Sarath Sunil&lt;sarath.sunil@ericsson.com&gt;</p>
-        <p>Committ Message : CSIDO-905: Really new Random stuff added
-
-</p>
+        <h2>Release Notes for {{release_tag}} </h2>
+        <p><h3>Issues List</h3></p>
+        <p>{{customer_description}}</p>
+        <p><h3>Release Tag</p>
+        <p>{{release_tag}}</p>
 
 </div>
 </div>
@@ -526,4 +558,3 @@ p.section-description {
 <script src="resources/js/respond.min.js"></script>
 </body>
 </html>
-

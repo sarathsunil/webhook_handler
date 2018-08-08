@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Release Notes Regenerate Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="../static/generate.css" rel="stylesheet">
+    
+  </head>
+ 
+  <body>
+ 
+    <div class="container">
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" ><a href="main">Home</a></li>
+            <li role="presentation"><a href="#">Sign In</a></li>
+            <li role="presentation" class="active"><a href="#">Sign Up</a></li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">Release Notes Portal</h3>
+      </div>
+ 
+      <div class="jumbotron">
+        <h1>Regenerate Release Notes</h1>
+        <form class="form-signin">
+        <label for="inputName" class="sr-only">Project Name</label>
+        <input type="name" name="projectName" id="projectName" class="form-control" placeholder="Project Name" required autofocus>
+        <label for="inputEmail" class="sr-only">Release Tag</label>
+        <input type="name" name="releaseTag" id="releaseTag" class="form-control" placeholder="Release Tag" required autofocus>
+        <button id="btnGenerate" class="btn btn-lg btn-primary btn-block" type="button">Regenerate</button>
+      </form>
+      </div>
+ 
+       
+ 
+      <footer class="footer">
+        <p>&copy; Company 2015</p>
+      </footer>
+ 
+    </div>
+  </body>
+</html>

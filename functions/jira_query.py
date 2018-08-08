@@ -55,8 +55,8 @@ def jira_release_tag_look_up(ip,port,session_cookie,project_name,release_tag,cus
              jira_list.append(retain)
      jira_customer_description = """"""
      for item in jira_list:
-          jira_customer_description= jira_customer_description+"ISSUE ID : "+item['issue_id'] + "</p><p>"
-          jira_customer_description= jira_customer_description+"DESCRIPTION : "+item['customer_description'] + "</p><p>"
+          jira_customer_description= jira_customer_description+"<h3>ISSUE ID : "+item['issue_id'] + "</h3></p><p>"
+          jira_customer_description= jira_customer_description+"<h3>DESCRIPTION : </h3> "+item['customer_description'] + "</p><p>"
           jira_customer_description= jira_customer_description+"</p><p>"
      return jira_customer_description      
 
