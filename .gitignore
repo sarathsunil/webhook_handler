@@ -7,3 +7,5 @@
 curl_out
 .gitignore
 *.pid
+*.swp
+*_bkp*

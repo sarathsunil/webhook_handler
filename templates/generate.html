@@ -24,6 +24,13 @@
     });});
     </script>
     <link href="../static/generate.css" rel="stylesheet">
+   <style type="text/css">
+   body { background: lavender !important; }
+   div.header { background: lightsteelblue !important;}
+   div.jumbotron { background: lightsteelblue !important;}
+   nav {background:#AFCFEE !important;}
+
+   </style>
     
   </head>
  
@@ -41,11 +48,28 @@
        </ul>
        {% endif %}
        {% endwith %}
+    <div class="container">
+     <div class="header" role="navigation">
+      <nav class="navbar navbar-default navbar-static-top">
       <div class="container">
-      <div class="header">
-        <h3 class="text-muted">Release Notes Portal</h3>
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Release Notes Portal</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/lookUp">Lookup</a></li>
+            <li class="active"><a href="/regenerate">Generate</a></li>
+            <li><a href="/getPdf">Get PDF</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
       </div>
- 
+    </nav>
       <div class="jumbotron">
         <h2>Regenerate Release Notes</h2>
         <form class="form-signin">
