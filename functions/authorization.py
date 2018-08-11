@@ -11,10 +11,13 @@ def get_session_cookie(username,password,url):
            'content-type': 'application/json'
            }
     response = requests.request("POST", url, data=payload, headers=headers, verify=False)
-    res = response.json()
-    if res["session"]["name"] == "JSESSIONID":
+    try:
+       res = response.json()
+
+       if res["session"]["name"] == "JSESSIONID":
           jsessionid = res["session"]["value"]
           return {"JSESSIONID":jsessionid,"values": True}
-    else:
+       else:
           return {"JSESSIONID":"kajldbalidbjwilablujk", "values":False}
-
+    except:
+       return {"JSESSIONID":"kajldbalidbjwilablujk", "values":response.text}

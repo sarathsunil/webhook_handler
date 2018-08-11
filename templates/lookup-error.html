@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Release Notes Regenerate Page</title>
+    <title>Release Notes Lookup Page</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
+    mydata = $('form').serialize()
     $(function() {
     $('#btnGenerate').click(function() { 
         $.ajax({
-            url: 'generate/regenerate',
+            url: '/commits/api/v1.0/releasenotes/',
             data: $('form').serialize(),
-            type: 'POST',
+            type: 'GET',
+            dataType: 'html',
             success: function(response) {
                 console.log(response);
-                window.location.href = "commits/api/v1.0/releasenotes/latest/";
+                window.location.href = "/commits/api/v1.0/releasenotes/?"+$('form').serialize();
             },
             error: function(error) {
                 console.log(error);
-                window.location.href = "generate_error";
+                window.location.href = "/lookup_error";
             }
         });
     });});
@@ -47,16 +49,16 @@
       </div>
  
       <div class="jumbotron">
-        <h2>Regenerate Release Notes</h2>
+        <h3>Error Occured!!! Please check project name and Release tag</h3>
         <form class="form-signin">
-        <label for="projectName" class="sr-only">Project Name</label>
-        <input type="name" name="projectName" id="projectName" class="form-control" placeholder="Project Name" required autofocus>
-        <label for="releaseTag" class="sr-only">Release Tag</label>
-        <input type="name" name="releaseTag" id="releaseTag" class="form-control" placeholder="Release Tag" required autofocus>
-        <button id="btnGenerate" class="btn btn-lg btn-primary btn-block" type="button" OnClientClick="return false">Regenerate</button>
+        <label for="project_name" class="sr-only">Project Name</label>
+        <input type="name" name="project_name" id="project_name" class="form-control" placeholder="Project Name" required autofocus>
+        <label for="release_tag" class="sr-only">Release Tag</label>
+        <input type="name" name="release_tag" id="release_tag" class="form-control" placeholder="Release Tag" required autofocus>
+        <button id="btnGenerate" class="btn btn-lg btn-primary btn-block" type="button" OnClientClick="return false">Lookup</button>
       </form>
       </div>
- 
+      <div id="storage" style="display:none;"> </div>
        
  
       <footer class="footer">

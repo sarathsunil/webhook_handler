@@ -6,3 +6,4 @@
 /hookhandler/*
 curl_out
 .gitignore
+*.pid
